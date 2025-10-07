@@ -13,25 +13,27 @@ const Contacts = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <StatusBar />
       
-      <main className="flex-1 px-6 pt-8 pb-24">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-foreground">Emergency Contacts</h1>
-          <button className="w-10 h-10 rounded-full bg-accent text-accent-foreground flex items-center justify-center shadow-md hover:shadow-lg transition-all">
-            <UserPlus className="w-5 h-5" />
-          </button>
+      <main className="flex-1 px-6 pt-8 pb-32">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Emergency Contacts</h1>
+          <p className="text-muted-foreground">Manage your trusted contacts</p>
         </div>
-        
-        <div className="space-y-3">
+
+        {/* Add Contact Button */}
+        <button className="w-full neu-flat rounded-2xl p-4 mb-6 flex items-center justify-center gap-3 hover:neu-pressed transition-neu">
+          <UserPlus className="w-5 h-5 text-accent" />
+          <span className="font-semibold text-foreground">Add New Contact</span>
+        </button>
+
+        {/* Contacts List */}
+        <div className="space-y-4">
           {emergencyContacts.map((contact, index) => (
-            <div key={index} className="bg-card rounded-xl p-4 card-shadow border border-border/50">
-              <div className="flex items-center gap-4 mb-3">
-                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
-                  <Phone className="w-6 h-6 text-accent" />
-                </div>
+            <div key={index} className="neu-flat-sm rounded-2xl p-5">
+              <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-semibold text-foreground">{contact.name}</h3>
-                    <span className={`text-[10px] px-2 py-0.5 rounded-full ${
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-bold text-foreground text-lg">{contact.name}</h3>
+                    <span className={`text-xs px-2 py-1 rounded-full ${
                       contact.priority === "High" 
                         ? "bg-primary/20 text-primary" 
                         : "bg-accent/20 text-accent"
@@ -39,31 +41,32 @@ const Contacts = () => {
                       {contact.priority}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">{contact.relation}</p>
-                  <p className="text-sm text-foreground mt-1">{contact.phone}</p>
+                  <p className="text-sm text-muted-foreground mb-2">{contact.relation}</p>
+                  <p className="text-sm font-medium text-foreground">{contact.phone}</p>
                 </div>
               </div>
               
-              <div className="flex gap-2">
-                <button className="flex-1 bg-secondary text-secondary-foreground py-2 rounded-lg text-sm font-medium hover:shadow-md transition-all flex items-center justify-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  Call
+              <div className="flex gap-2 mt-4">
+                <button className="flex-1 neu-flat-sm rounded-xl py-2 flex items-center justify-center gap-2 hover:neu-pressed-sm transition-neu">
+                  <Phone className="w-4 h-4 text-accent" />
+                  <span className="text-sm font-medium text-foreground">Call</span>
                 </button>
-                <button className="flex-1 bg-secondary text-secondary-foreground py-2 rounded-lg text-sm font-medium hover:shadow-md transition-all flex items-center justify-center gap-2">
-                  <Mail className="w-4 h-4" />
-                  Text
+                <button className="flex-1 neu-flat-sm rounded-xl py-2 flex items-center justify-center gap-2 hover:neu-pressed-sm transition-neu">
+                  <Mail className="w-4 h-4 text-accent" />
+                  <span className="text-sm font-medium text-foreground">Message</span>
                 </button>
-                <button className="w-10 h-10 bg-destructive/10 text-destructive rounded-lg hover:bg-destructive/20 transition-all flex items-center justify-center">
-                  <Trash2 className="w-4 h-4" />
+                <button className="neu-flat-sm rounded-xl px-4 py-2 hover:neu-pressed-sm transition-neu">
+                  <Trash2 className="w-4 h-4 text-destructive" />
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-6 bg-muted rounded-xl p-4 border border-border/50">
+        {/* Info Box */}
+        <div className="mt-6 neu-pressed-sm rounded-2xl p-4">
           <p className="text-sm text-muted-foreground text-center">
-            💡 These contacts will be notified when you trigger an SOS alert
+            These contacts will be notified automatically when you trigger an SOS alert
           </p>
         </div>
       </main>
