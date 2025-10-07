@@ -16,40 +16,70 @@ const SpeedDial = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <StatusBar />
       
-      <main className="flex-1 px-6 pt-8 pb-24">
-        <h1 className="text-2xl font-bold mb-6 text-foreground">Speed Dial</h1>
-        
-        <div className="grid grid-cols-2 gap-4 mb-6">
+      <main className="flex-1 px-6 pt-8 pb-32">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Speed Dial</h1>
+          <p className="text-muted-foreground">Quick access to important numbers</p>
+        </div>
+
+        {/* Speed Dial Grid */}
+        <div className="grid grid-cols-3 gap-4 mb-6">
           {speedDialNumbers.map((item, index) => (
             <button
               key={index}
-              className={`bg-card rounded-2xl p-6 card-shadow border border-border/50 hover:scale-105 transition-all active:scale-95 ${
-                item.color === "primary" ? "ring-2 ring-primary/50" : ""
+              className={`neu-flat rounded-2xl aspect-square flex flex-col items-center justify-center gap-3 hover:neu-pressed transition-neu ${
+                item.color === "primary" ? "ring-2 ring-primary/30" : ""
               }`}
             >
-              <div className={`w-16 h-16 rounded-full ${
-                item.color === "primary" ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground"
-              } flex items-center justify-center mx-auto mb-3 shadow-lg`}>
-                <Phone className="w-8 h-8" />
+              <div className={`neu-pressed-sm rounded-full w-12 h-12 flex items-center justify-center ${
+                item.color === "primary" ? "bg-primary/10" : ""
+              }`}>
+                <span className={`text-2xl font-bold ${
+                  item.color === "primary" ? "text-primary" : "text-accent"
+                }`}>
+                  {item.number}
+                </span>
               </div>
-              <h3 className="font-semibold text-foreground text-center mb-1">{item.label}</h3>
-              <p className={`text-2xl font-bold text-center ${
-                item.color === "primary" ? "text-primary" : "text-accent"
-              }`}>{item.number}</p>
+              <span className="text-xs font-medium text-foreground">{item.label}</span>
+            </button>
+          ))}
+          
+          {/* Add More Button */}
+          {[...Array(3)].map((_, index) => (
+            <button
+              key={`empty-${index}`}
+              className="neu-flat rounded-2xl aspect-square flex flex-col items-center justify-center gap-3 hover:neu-pressed transition-neu opacity-50"
+            >
+              <Plus className="w-8 h-8 text-muted-foreground" />
+              <span className="text-xs font-medium text-muted-foreground">Add</span>
             </button>
           ))}
         </div>
 
-        <button className="w-full bg-secondary text-secondary-foreground py-3 rounded-xl font-medium hover:shadow-md transition-all flex items-center justify-center gap-2">
-          <Plus className="w-5 h-5" />
-          Add Speed Dial
-        </button>
-
-        <div className="mt-6 bg-muted rounded-xl p-4 border border-border/50">
-          <p className="text-sm text-muted-foreground">
-            💡 Tap and hold any number to make a quick call
-          </p>
+        {/* Instructions */}
+        <div className="neu-pressed-sm rounded-2xl p-6">
+          <h3 className="font-semibold text-foreground mb-3">How to use Speed Dial</h3>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            <li className="flex gap-2">
+              <span className="text-accent">•</span>
+              <span>Press and hold any number to quickly call that contact</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-accent">•</span>
+              <span>Customize your speed dial numbers by tapping the Add button</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-accent">•</span>
+              <span>Emergency services (911) is always available at position 0</span>
+            </li>
+          </ul>
         </div>
+
+        {/* Quick Call Emergency */}
+        <button className="mt-6 w-full neu-flat rounded-2xl p-4 flex items-center justify-center gap-3 hover:neu-pressed transition-neu bg-primary/5">
+          <Phone className="w-5 h-5 text-primary" />
+          <span className="font-semibold text-primary">Emergency Call (911)</span>
+        </button>
       </main>
 
       <BottomNav />
