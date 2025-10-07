@@ -17,39 +17,39 @@ const Index = () => {
     <div className="min-h-screen bg-background flex flex-col">
       <StatusBar />
       
-      <main className="flex-1 flex flex-col items-center justify-center px-6 pb-32">
+      <main className="flex-1 flex flex-col items-center justify-center px-6 pb-24">
         {/* Header */}
-        <div className="mb-12 text-center animate-fade-in">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <Shield className="w-8 h-8 text-accent" />
-            <h1 className="text-3xl font-bold text-foreground">SafeGuard</h1>
+        <div className="mb-16 text-center animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <Shield className="w-10 h-10 text-accent" />
+            <h1 className="text-4xl font-bold text-foreground">SafeGuard</h1>
           </div>
-          <p className="text-muted-foreground">Your safety companion</p>
+          <p className="text-muted-foreground text-base">Your safety companion</p>
         </div>
 
         {/* Main SOS Button */}
-        <div className="mb-12">
+        <div className="mb-10">
           <SOSButton onPress={handleSOSPress} />
         </div>
 
         {/* Quick Actions */}
-        <div className="flex items-center gap-8">
-          <MicToggle />
+        <div className="flex items-center gap-12 mb-12">
           <TrackButton />
+          <MicToggle />
         </div>
 
         {/* Quick Stats */}
-        <div className="mt-12 neu-flat-sm rounded-3xl px-8 py-4 flex items-center gap-8">
+        <div className="bg-card rounded-2xl px-8 py-5 flex items-center gap-8 card-shadow border border-border/50">
           <div className="text-center">
             <p className="text-2xl font-bold text-foreground">3</p>
             <p className="text-xs text-muted-foreground">Contacts</p>
           </div>
-          <div className="w-px h-8 bg-border"></div>
+          <div className="w-px h-10 bg-border"></div>
           <div className="text-center">
             <p className="text-2xl font-bold text-foreground">24/7</p>
             <p className="text-xs text-muted-foreground">Protected</p>
           </div>
-          <div className="w-px h-8 bg-border"></div>
+          <div className="w-px h-10 bg-border"></div>
           <div className="text-center">
             <p className="text-2xl font-bold text-accent">Active</p>
             <p className="text-xs text-muted-foreground">Status</p>
